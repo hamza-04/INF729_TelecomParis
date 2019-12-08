@@ -65,7 +65,8 @@ object Preprocessor {
       .read
       .option("header", true) // utilise la première ligne du (des) fichier(s) comme header
       .option("inferSchema", "true") // pour inférer le type de chaque colonne (Int, String, etc.)
-      .csv("/Users/hamzaamri/Desktop/Spark project/spark_project_2/data/train_clean.csv")//.icloud")
+      ///Users/hamzaamri/Desktop/Spark project/spark_project_2/
+      .csv("data/train_clean.csv")//.icloud")
 
     import spark.implicits._
 

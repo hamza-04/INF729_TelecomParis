@@ -48,7 +48,7 @@ object Trainer {
       .appName("TP Spark : Trainer")
       .getOrCreate()
 
-    val dftrain = spark.read.parquet("/Users/hamzaamri/Downloads/cours-spark-telecom-master/data/prepared_trainingset")
+    val dftrain = spark.read.parquet("prepared_trainingset")
 
     // Stage 1 : récupérer les mots des textes
     val tokenizer = new RegexTokenizer()
@@ -118,12 +118,6 @@ object Trainer {
 
     // Fit the pipeline to training documents.
     val model1 = pipeline.fit(training)
-
-    // Now we can optionally save the fitted pipeline to disk
-    model1.write.overwrite().save("/Users/hamzaamri/Desktop/Spark project/spark_project_2/spark-logistic-regression-model-fit")
-
-    // We can also save this unfit pipeline to disk
-    pipeline.write.overwrite().save("/Users/hamzaamri/Desktop/Spark project/spark_project_2/spark-logistic-regression-model-unfit")
 
     val dfWithSimplePredictions=model1.transform(test)
     dfWithSimplePredictions.groupBy("final_status", "predictions").count.show(100)
